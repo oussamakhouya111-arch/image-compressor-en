@@ -11,7 +11,7 @@ A static, English-language image compression website designed for deployment on 
 - Port: 3000; the server reads the PORT environment variable.
 
 ## SEO
-Canonical URLs and the sitemap currently use https://sparkly-cedar-8178.deplexo.com. If you change the public hostname, update canonical URLs in all HTML pages, plus robots.txt and sitemap.xml.
+Canonical URLs and the sitemap currently use https://lush-lighthouse-3014.deplexo.com. If you change the public hostname, update canonical URLs in all HTML pages, plus robots.txt and sitemap.xml.
 
 ## Files
 - index.html: home page and compressor
