@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sparkly-cedar-8178.deplexo.com/sitemap.xml
