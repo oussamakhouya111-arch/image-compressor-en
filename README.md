@@ -1,6 +1,6 @@
 # Image Compressor
 
-A static, English-language image compression website designed for deployment on Deplexo using a small Python HTTP server in Docker.
+A static, English-language image compression website designed for deployment on Deplexo using a small Python HTTP server in Docker. The browser tool supports manual quality/width settings and optional target-size compression.
 
 ## Deplexo settings
 - App type: Web service
@@ -15,7 +15,8 @@ Canonical URLs and the sitemap currently use https://compressimagefiles.co99.win
 
 ## Files
 - index.html: home page and compressor
-- app.js: browser-side image processing
+- app.js: browser-side image processing, including automatic target-size compression
+- compress-image-to-50kb.html, compress-image-to-100kb.html, compress-image-to-200kb.html, and compress-image-to-500kb.html: target-size landing pages
 - styles.css: responsive styling
 - how-to-compress-images.html and jpg-vs-webp.html: useful informational pages
 - about.html, contact.html, privacy.html, terms.html: site information pages
