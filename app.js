@@ -49,60 +49,66 @@
         throw new Error("Enter a target size between 10 KB and 5000 KB.");
       }
       const targetBytes = targetKB * 1024;
-      let smallestBlob = null;
-
-      for (let resizePass = 0; resizePass < 50; resizePass++) {
-        const highBlob = await encode(width, height, 0.95);
-        if (highBlob.size <= targetBytes) {
-          blob = highBlob;
-          usedQuality = 0.95;
-          break;
-        }
-
-        const lowBlob = await encode(width, height, 0.30);
-        smallestBlob = lowBlob;
-        if (lowBlob.size <= targetBytes) {
-          let bestBlob = lowBlob;
-          let bestQuality = 0.30;
-          let low = 0.30, high = 0.95;
-          for (let attempt = 0; attempt < 8; attempt++) {
-            const mid = (low + high) / 2;
-            const candidate = await encode(width, height, mid);
-            if (candidate.size <= targetBytes) {
-              bestBlob = candidate;
-              bestQuality = mid;
-              low = mid;
-            } else {
-              high = mid;
-            }
+      const widthMustChange = Boolean(maxWidth && item.bitmap.width > maxWidth);
+      if (item.file.size <= targetBytes && !widthMustChange && item.file.type === type) {
+        blob = item.file;
+        usedQuality = 1;
+        item.targetMet = true;
+      } else {
+        let smallestBlob = null;
+        for (let resizePass = 0; resizePass < 50; resizePass++) {
+          const highBlob = await encode(width, height, 0.95);
+          if (highBlob.size <= targetBytes) {
+            blob = highBlob;
+            usedQuality = 0.95;
+            break;
           }
-          blob = bestBlob;
-          usedQuality = bestQuality;
-          break;
+
+          const lowBlob = await encode(width, height, 0.30);
+          smallestBlob = lowBlob;
+          if (lowBlob.size <= targetBytes) {
+            let bestBlob = lowBlob;
+            let bestQuality = 0.30;
+            let low = 0.30, high = 0.95;
+            for (let attempt = 0; attempt < 8; attempt++) {
+              const mid = (low + high) / 2;
+              const candidate = await encode(width, height, mid);
+              if (candidate.size <= targetBytes) {
+                bestBlob = candidate;
+                bestQuality = mid;
+                low = mid;
+              } else {
+                high = mid;
+              }
+            }
+            blob = bestBlob;
+            usedQuality = bestQuality;
+            break;
+          }
+
+          if (width <= 1 && height <= 1) {
+            blob = lowBlob;
+            usedQuality = 0.30;
+            break;
+          }
+
+          const scale = Math.max(0.10, Math.min(0.85, Math.sqrt(targetBytes / lowBlob.size) * 0.90));
+          let nextWidth = Math.max(1, Math.floor(width * scale));
+          let nextHeight = Math.max(1, Math.floor(height * scale));
+          if (nextWidth === width && nextHeight === height) {
+            if (width >= height && width > 1) nextWidth = width - 1;
+            else if (height > 1) nextHeight = height - 1;
+          }
+          width = nextWidth;
+          height = nextHeight;
         }
 
-        if (width <= 1 && height <= 1) {
-          blob = lowBlob;
+        if (!blob && smallestBlob) {
+          blob = await encode(width, height, 0.30);
           usedQuality = 0.30;
-          break;
         }
-
-        const scale = Math.max(0.10, Math.min(0.85, Math.sqrt(targetBytes / lowBlob.size) * 0.90));
-        let nextWidth = Math.max(1, Math.floor(width * scale));
-        let nextHeight = Math.max(1, Math.floor(height * scale));
-        if (nextWidth === width && nextHeight === height) {
-          if (width >= height && width > 1) nextWidth = width - 1;
-          else if (height > 1) nextHeight = height - 1;
-        }
-        width = nextWidth;
-        height = nextHeight;
+        item.targetMet = Boolean(blob && blob.size <= targetBytes);
       }
-
-      if (!blob && smallestBlob) {
-        blob = await encode(width, height, 0.30);
-        usedQuality = 0.30;
-      }
-      item.targetMet = Boolean(blob && blob.size <= targetBytes);
     } else {
       blob = await encode(width, height, usedQuality);
     }
