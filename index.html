@@ -35,12 +35,33 @@
 <div class="field"><label for="maxw">Maximum width</label><select id="maxw"><option value="0">Keep original width</option><option value="1920">1920 pixels</option><option value="1280">1280 pixels</option><option value="800">800 pixels</option></select><p class="field-help">Resize large images before export.</p></div>
 <div class="field"><label for="format">Output format</label><select id="format"><option value="image/jpeg">JPG — widely supported</option><option value="image/webp">WebP — often smaller</option></select><p class="field-help">JPG does not preserve transparency.</p></div>
 </div>
+<div class="target-controls">
+  <label class="target-toggle" for="target-enabled">
+    <input type="checkbox" id="target-enabled">
+    <span class="target-toggle-copy"><strong>Target a file size</strong><small>Automatically adjust compression to stay under a size limit.</small></span>
+  </label>
+  <div class="target-input-wrap">
+    <label for="target-kb">Maximum file size</label>
+    <div class="target-input-row"><input type="number" id="target-kb" min="10" max="5000" step="10" value="100" disabled><span>KB</span></div>
+    <p class="field-help">Minimum 10 KB. Quality is tried first; dimensions shrink only when needed.</p>
+  </div>
+</div>
 <div class="status-row" id="status" aria-live="polite">Choose images to begin.</div>
 <div id="results" hidden><div class="results-toolbar"><p class="total" id="total"></p><div class="button-group"><button class="button" id="dlAll" type="button">Download all</button><button class="button button-secondary" id="clear" type="button">Clear images</button></div></div><div class="image-list" id="list"></div></div>
 <p class="error-message" id="err" role="alert" hidden></p></section>
 <section class="trust-strip"><div><strong>✓ Local processing</strong><p>Files are processed in your browser.</p></div><div><strong>◇ Adjustable quality</strong><p>Choose a quality level and image width.</p></div><div><strong>↓ Easy downloads</strong><p>Save results individually or in a batch.</p></div></section>
 <section class="content-section"><h2>How to compress images online</h2><p>This free image compressor opens selected images in your browser and exports new files at your chosen quality and dimensions. No account is required, and the tool does not upload selected images to an image-processing server. Very large images may use significant memory on your device.</p><h3>1. Select your images</h3><p>Choose one or more JPG, PNG, or WebP images, or drag them into the upload area.</p><h3>2. Adjust quality and dimensions</h3><p>Start around 75% quality, then compare the output and file size. Keep the original width or choose a maximum width of 1920, 1280, or 800 pixels.</p><h3>3. Choose a format and download</h3><p>Export as JPG for broad compatibility or WebP to try a modern format that often produces smaller files. Compression will not reduce every file because some images are already optimized.</p></section>
 <section class="content-section"><h2>Which image format should you choose?</h2><div class="guide-grid"><article class="guide-card"><h3>JPG / JPEG</h3><p>A practical choice for photographs and broad compatibility. JPG does not support transparent backgrounds.</p><a class="text-link" href="jpg-vs-webp.html">Compare JPG and WebP →</a></article><article class="guide-card"><h3>PNG</h3><p>Useful for screenshots, graphics, and transparent images. Exporting as JPG turns transparent areas white.</p><a class="text-link" href="how-to-compress-images.html">Read the compression guide →</a></article><article class="guide-card"><h3>WebP</h3><p>A modern format that can offer good visual quality at smaller file sizes. Check that your destination supports it.</p><a class="text-link" href="jpg-vs-webp.html">Learn about formats →</a></article></div></section>
+<section class="content-section size-guides">
+<h2>Compress images to a specific file size</h2>
+<p>Need to meet a file-size limit for an online form, application, or upload? Choose a target and let the compressor adjust quality automatically, reducing image dimensions only if needed.</p>
+<div class="size-guide-links">
+<a href="compress-image-to-50kb.html"><strong>Compress to 50 KB</strong><span>For strict upload limits</span></a>
+<a href="compress-image-to-100kb.html"><strong>Compress to 100 KB</strong><span>A common photo-size limit</span></a>
+<a href="compress-image-to-200kb.html"><strong>Compress to 200 KB</strong><span>Balance size and detail</span></a>
+<a href="compress-image-to-500kb.html"><strong>Compress to 500 KB</strong><span>Keep more image detail</span></a>
+</div>
+</section>
 <section class="content-section faq-section"><h2>Frequently asked questions</h2><details><summary>Are my images uploaded to a server?</summary><p>No image file is sent to an image-processing server by this tool. Image decoding and export happen locally in your browser.</p></details><details><summary>Will image quality change?</summary><p>JPG and WebP use lossy compression with the settings provided here, so a smaller file can involve some visual change. Compare the output before replacing your original.</p></details><details><summary>Will every image become smaller?</summary><p>No. Results depend on the source file, dimensions, format, and quality. The tool shows before-and-after sizes.</p></details><details><summary>Can I compress multiple images at once?</summary><p>Yes, select multiple supported images in one batch. If your browser slows down, try a smaller batch.</p></details><details><summary>Why does a transparent image have a white background?</summary><p>JPG does not support transparency. Choose WebP if you need to preserve transparent areas, then check the exported result.</p></details></section>
 <section class="cta-panel"><div><h2>Ready to reduce your image sizes?</h2><p>Choose files above and compare compressed results before downloading.</p></div><a class="button" href="#compressor">Open the compressor ↑</a></section>
 </main>
