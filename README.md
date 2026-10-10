@@ -21,6 +21,7 @@ Canonical URLs and the sitemap currently use https://compressimagefiles.co99.win
 - how-to-compress-images.html and jpg-vs-webp.html: useful informational pages
 - about.html, contact.html, privacy.html, terms.html: site information pages
 - robots.txt and sitemap.xml: crawl guidance
-- favicon.svg: site icon
+- favicon.svg: scalable site icon used across pages
+- favicon-96.png: 96×96 PNG favicon declared on the homepage for search/browser icon support
 
 Image files are processed locally in the user's browser. The tool accepts JPG, PNG and WebP and exports JPG or WebP. Keep original files and review exported results.
