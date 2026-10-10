@@ -99,7 +99,7 @@
       }
 
       if (!blob && smallestBlob) {
-        blob = smallestBlob;
+        blob = await encode(width, height, 0.30);
         usedQuality = 0.30;
       }
       item.targetMet = Boolean(blob && blob.size <= targetBytes);
