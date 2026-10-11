@@ -1,5 +1,7 @@
 (() => {
   const $ = (selector) => document.querySelector(selector);
+  const isArabic = document.documentElement.lang === "ar";
+  const t = (english, arabic) => isArabic ? arabic : english;
   const input = $("#file");
   if (!input) return;
   const items = [];
@@ -20,7 +22,7 @@
 
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
-    if (!ctx) throw new Error("Canvas is unavailable in this browser.");
+    if (!ctx) throw new Error(t("Canvas is unavailable in this browser.", "المتصفح لا يدعم معالجة الصور بهذه الطريقة."));
 
     const encode = async (w, h, quality) => {
       canvas.width = w;
@@ -31,7 +33,7 @@
       }
       ctx.drawImage(item.bitmap, 0, 0, w, h);
       const blob = await new Promise((resolve) => canvas.toBlob(resolve, type, quality));
-      if (!blob) throw new Error("This browser could not export the image in the selected format.");
+      if (!blob) throw new Error(t("This browser could not export the image in the selected format.", "تعذّر حفظ الصورة بالصيغة المختارة في هذا المتصفح."));
       return blob;
     };
 
@@ -46,7 +48,7 @@
     if (targetMode) {
       const targetKB = Number($("#target-kb").value);
       if (!Number.isFinite(targetKB) || targetKB < 10 || targetKB > 5000) {
-        throw new Error("Enter a target size between 10 KB and 5000 KB.");
+        throw new Error(t("Enter a target size between 10 KB and 5000 KB.", "أدخل حجمًا مستهدفًا بين 10 و5000 كيلوبايت."));
       }
       const targetBytes = targetKB * 1024;
       const widthMustChange = Boolean(maxWidth && item.bitmap.width > maxWidth);
@@ -113,7 +115,7 @@
       blob = await encode(width, height, usedQuality);
     }
 
-    if (!blob) throw new Error("The image could not be compressed. Try another file.");
+    if (!blob) throw new Error(t("The image could not be compressed. Try another file.", "تعذّر ضغط الصورة. جرّب ملفًا آخر."));
     if (item.url) URL.revokeObjectURL(item.url);
     item.blob = blob;
     item.url = URL.createObjectURL(blob);
@@ -139,41 +141,41 @@
       if (item.targetRequested) {
         const target = document.createElement("span");
         target.className = item.targetMet ? "target-result" : "target-result target-result-warn";
-        target.textContent = "Target " + item.targetKB + " KB " + (item.targetMet ? "reached" : "not reached");
+        target.textContent = isArabic ? (item.targetMet ? "تم الوصول إلى الحجم " : "لم يتم الوصول إلى الحجم ") + item.targetKB + "KB" : "Target " + item.targetKB + " KB " + (item.targetMet ? "reached" : "not reached");
         sizes.append(target);
       }
-      const saving = document.createElement("span"); saving.className = percent > 0 ? "saving" : "saving bad"; saving.textContent = percent > 0 ? "−" + percent + "%" : "No size reduction";
+      const saving = document.createElement("span"); saving.className = percent > 0 ? "saving" : "saving bad"; saving.textContent = percent > 0 ? "−" + percent + "%" : t("No size reduction", "لم ينخفض الحجم");
       sizes.append(saving); details.append(filename, sizes);
-      const download = document.createElement("a"); download.className = "button"; download.href = item.url; download.download = safeBaseName(item.file.name) + "-compressed." + item.extension; download.textContent = "Download";
+      const download = document.createElement("a"); download.className = "button"; download.href = item.url; download.download = safeBaseName(item.file.name) + "-compressed." + item.extension; download.textContent = t("Download", "تنزيل");
       row.append(image, details, download); list.append(row);
     });
     const pct = before ? Math.round((1 - after / before) * 100) : 0;
-    $("#total").textContent = good.length ? good.length + " image(s): " + formatBytes(before) + " → " + formatBytes(after) + (pct > 0 ? " (−" + pct + "%)" : "") : "";
+    $("#total").textContent = good.length ? (isArabic ? good.length + " صورة: " : good.length + " image(s): ") + formatBytes(before) + " → " + formatBytes(after) + (pct > 0 ? " (−" + pct + "%)" : "") : "";
     const failed = items.filter((item) => item.error);
     $("#err").hidden = failed.length === 0;
-    $("#err").textContent = failed.length ? failed.length + " file(s) could not be processed. Try a JPG, PNG, or WebP image." : "";
+    $("#err").textContent = failed.length ? (isArabic ? "تعذّرت معالجة " + failed.length + " ملف(ات). جرّب صورة JPG أو PNG أو WebP." : failed.length + " file(s) could not be processed. Try a JPG, PNG, or WebP image.") : "";
     const targetMode = $("#target-enabled").checked;
     if (!good.length) {
-      $("#status").textContent = "Processing selected images…";
+      $("#status").textContent = t("Processing selected images…", "جارٍ معالجة الصور المختارة…");
     } else if (targetMode) {
       const reached = good.filter((item) => item.targetMet).length;
-      $("#status").textContent = reached + " of " + good.length + " image(s) reached the target size. Review dimensions and quality before downloading.";
+      $("#status").textContent = isArabic ? "وصلت " + reached + " من " + good.length + " صورة إلى الحجم المستهدف. راجع الأبعاد والجودة قبل التنزيل." : reached + " of " + good.length + " image(s) reached the target size. Review dimensions and quality before downloading.";
     } else {
-      $("#status").textContent = "Compression complete. Review each result before downloading.";
+      $("#status").textContent = t("Compression complete. Review each result before downloading.", "اكتمل الضغط. راجع كل نتيجة قبل التنزيل.");
     }
   }
   async function reprocess() {
-    const id = ++runId; $("#status").textContent = "Compressing images…";
-    for (const item of items) { if (id !== runId) return; try { await compress(item); } catch (error) { item.error = error && error.message ? error.message : "Compression failed"; } }
+    const id = ++runId; $("#status").textContent = t("Compressing images…", "جارٍ ضغط الصور…");
+    for (const item of items) { if (id !== runId) return; try { await compress(item); } catch (error) { item.error = error && error.message ? error.message : t("Compression failed", "فشل ضغط الصورة"); } }
     render(id);
   }
   async function addFiles(fileList) {
     const files = Array.from(fileList).filter((file) => ["image/jpeg", "image/png", "image/webp"].includes(file.type));
-    if (!files.length) { $("#err").hidden = false; $("#err").textContent = "Please select JPG, PNG, or WebP image files."; return; }
+    if (!files.length) { $("#err").hidden = false; $("#err").textContent = t("Please select JPG, PNG, or WebP image files.", "اختر ملفات صور بصيغة JPG أو PNG أو WebP."); return; }
     $("#err").hidden = true;
     for (const file of files) {
       const item = {file, bitmap:null, blob:null, url:null, error:""};
-      try { item.bitmap = await createImageBitmap(file); } catch { item.error = "Could not read this image."; }
+      try { item.bitmap = await createImageBitmap(file); } catch { item.error = t("Could not read this image.", "تعذّر فتح هذه الصورة."); }
       items.push(item);
     }
     await reprocess();
@@ -216,6 +218,6 @@
   $("#clear").addEventListener("click", () => {
     runId++;
     items.forEach((item) => { if (item.url) URL.revokeObjectURL(item.url); if (item.bitmap && item.bitmap.close) item.bitmap.close(); });
-    items.length = 0; $("#list").replaceChildren(); $("#results").hidden = true; $("#err").hidden = true; $("#status").textContent = "Choose images to begin.";
+    items.length = 0; $("#list").replaceChildren(); $("#results").hidden = true; $("#err").hidden = true; $("#status").textContent = t("Choose images to begin.", "اختر الصور للبدء.");
   });
 })();
