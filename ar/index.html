@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RTWC86XHDS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RTWC86XHDS');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ضغط الصور أونلاين مجانًا | JPG وPNG وWebP</title>
+<meta name="description" content="اضغط صور JPG وPNG وWebP مجانًا وحدد الحجم المطلوب مثل 50 أو 100 كيلوبايت. تتم معالجة الصور داخل المتصفح دون رفعها إلى خادم معالجة الصور.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://compressimagefiles.co99.win/ar/">
+<link rel="alternate" hreflang="en" href="https://compressimagefiles.co99.win/">
+<link rel="alternate" hreflang="ar" href="https://compressimagefiles.co99.win/ar/">
+<link rel="alternate" hreflang="x-default" href="https://compressimagefiles.co99.win/">
+<meta name="theme-color" content="#0b6e83">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Image Compressor">
+<meta property="og:title" content="ضغط الصور أونلاين مجانًا">
+<meta property="og:description" content="قلّل حجم صور JPG وPNG وWebP وحدد الحجم المستهدف مباشرة في متصفحك.">
+<meta property="og:url" content="https://compressimagefiles.co99.win/ar/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../styles.css?v=targets-20261011-ar1">
+<script src="../app.js" defer></script>
+</head>
+<body>
+<header class="site-header"><div class="nav-wrap">
+<a class="brand" href="./"><span class="brand-mark">IC</span><span>ضغط الصور</span></a>
+<nav class="main-nav" aria-label="التنقل الرئيسي"><a href="./">ضغط الصور</a><a href="compress-image-to-50kb.html">ضغط إلى 50KB</a><a href="compress-image-to-100kb.html">ضغط إلى 100KB</a><a href="../" lang="en" dir="ltr">English</a></nav>
+</div></header>
+<main class="container">
+<section class="hero"><p class="eyebrow">أداة مجانية · لا تحتاج إلى حساب</p><h1>اضغط الصور أونلاين مجانًا</h1>
+<p class="lead">قلّل حجم صور JPG وPNG وWebP في خطوات بسيطة. تتم معالجة الصور داخل متصفحك، ولا يرفع هذا الموقع ملفات الصور المختارة إلى خادم لمعالجتها.</p></section>
+<section class="tool-card" id="compressor" aria-labelledby="tool-title">
+<h2 id="tool-title" class="visually-hidden">أداة ضغط الصور</h2>
+<label class="drop-zone" id="drop"><span class="upload-icon" aria-hidden="true">↑</span><strong>اختر الصور أو اسحبها إلى هنا</strong><span class="drop-hint">JPG أو PNG أو WebP · يمكنك اختيار عدة صور</span><input type="file" id="file" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" multiple></label>
+<div class="settings" aria-label="إعدادات ضغط الصور">
+<div class="field"><label for="quality">جودة الصورة <strong><span id="qv">75</span>%</strong></label><input type="range" id="quality" min="30" max="95" value="75"><p class="field-help">غالبًا ما تؤدي الجودة الأقل إلى ملف أصغر.</p></div>
+<div class="field"><label for="maxw">أقصى عرض للصورة</label><select id="maxw"><option value="0">الاحتفاظ بالعرض الأصلي</option><option value="1920">1920 بكسل</option><option value="1280">1280 بكسل</option><option value="800">800 بكسل</option></select><p class="field-help">يمكن تصغير الصور الكبيرة قبل حفظها.</p></div>
+<div class="field"><label for="format">صيغة الملف الناتج</label><select id="format"><option value="image/jpeg">JPG — متوافق على نطاق واسع</option><option value="image/webp">WebP — قد يكون أصغر حجمًا</option></select><p class="field-help">صيغة JPG لا تحتفظ بالخلفية الشفافة.</p></div>
+</div>
+<div class="target-controls">
+<label class="target-toggle" for="target-enabled"><input type="checkbox" id="target-enabled"><span class="target-toggle-copy"><strong>تحديد حجم مستهدف</strong><small>عدّل الضغط تلقائيًا لمحاولة البقاء تحت الحجم المطلوب.</small></span></label>
+<div class="target-input-wrap"><label for="target-kb">الحجم الأقصى للملف</label><div class="target-input-row"><input type="number" id="target-kb" min="10" max="5000" step="10" value="100" disabled><span>KB</span></div><p class="field-help">من 10 إلى 5000 كيلوبايت. تُعدّل الجودة أولًا، ثم الأبعاد عند الحاجة.</p></div>
+</div>
+<div class="status-row" id="status" aria-live="polite">اختر الصور للبدء.</div>
+<div id="results" hidden><div class="results-toolbar"><p class="total" id="total"></p><div class="button-group"><button class="button" id="dlAll" type="button">تنزيل الكل</button><button class="button button-secondary" id="clear" type="button">مسح الصور</button></div></div><div class="image-list" id="list"></div></div>
+<p class="error-message" id="err" role="alert" hidden></p>
+</section>
+<section class="trust-strip"><div><strong>معالجة داخل المتصفح</strong><p>تُعالج الصور على جهازك من خلال المتصفح.</p></div><div><strong>التحكم في الجودة</strong><p>اضبط الجودة والعرض قبل حفظ الصورة.</p></div><div><strong>تنزيل سهل</strong><p>نزّل كل صورة منفردة أو نزّل النتائج بالتتابع.</p></div></section>
+<section class="content-section"><h2>طريقة ضغط الصور</h2><p>استخدم أداة ضغط الصور لتقليل حجم الملفات قبل رفعها إلى المواقع أو إرسالها. احتفظ بالملف الأصلي، ثم افحص الصورة الناتجة للتأكد من أن جودتها مناسبة.</p><h3>1. اختر الصور</h3><p>اختر صورة واحدة أو عدة صور بصيغ JPG أو PNG أو WebP من جهازك.</p><h3>2. اضبط الجودة والأبعاد</h3><p>ابدأ بجودة متوسطة، ثم قارن وضوح الصورة وحجم الملف. وإذا كانت الصورة أكبر من المطلوب، جرّب اختيار عرض أقصى أصغر.</p><h3>3. اختر الصيغة ونزّل الملف</h3><p>JPG مناسب لكثير من الصور الفوتوغرافية، بينما قد يوفر WebP حجمًا أصغر ويدعم الشفافية. يعتمد الناتج على الصورة الأصلية والإعدادات.</p></section>
+<section class="content-section"><h2>ضغط الصورة إلى حجم محدد</h2><p>إذا كان الموقع الذي تستخدمه يفرض حدًا لحجم الملف، فاختر إحدى الصفحات التالية لبدء الأداة بالحجم المطلوب.</p><div class="size-guide-links"><a href="compress-image-to-50kb.html"><strong>ضغط إلى 50KB</strong><span>للحدود الصارمة لحجم الملفات</span></a><a href="compress-image-to-100kb.html"><strong>ضغط إلى 100KB</strong><span>حجم شائع لرفع الصور</span></a><a href="../compress-image-to-200kb.html"><strong>English: 200KB</strong><span>Open the English guide</span></a><a href="../compress-image-to-500kb.html"><strong>English: 500KB</strong><span>Open the English guide</span></a></div></section>
+<section class="content-section faq-section"><h2>الأسئلة الشائعة</h2><details><summary>هل تُرفع صوري إلى خادم؟</summary><p>لا يرسل هذا الموقع الصور المختارة إلى خادم لمعالجتها؛ تتم قراءة الصور وضغطها داخل متصفحك.</p></details><details><summary>هل يمكن أن تتغير جودة الصورة؟</summary><p>نعم. قد تؤدي عملية الضغط، خصوصًا مع JPG وWebP بإعدادات الضغط الفاقد، إلى بعض التغيير البصري. افحص النتيجة قبل استبدال الملف الأصلي.</p></details><details><summary>هل سيصبح كل ملف أصغر؟</summary><p>ليس بالضرورة. يعتمد الناتج على حجم الملف الأصلي وأبعاده وصيغته وإعدادات الجودة. تعرض الأداة الحجم قبل الضغط وبعده.</p></details><details><summary>هل يمكن ضغط عدة صور مرة واحدة؟</summary><p>نعم، اختر عدة صور مدعومة في المرة نفسها. إذا أصبح المتصفح بطيئًا، جرّب معالجة عدد أقل من الصور في كل دفعة.</p></details><details><summary>لماذا تتحول الخلفية الشفافة إلى الأبيض؟</summary><p>صيغة JPG لا تدعم الشفافية. اختر WebP إذا كنت تحتاج إلى الحفاظ على المناطق الشفافة، ثم افحص الملف الناتج.</p></details></section>
+<section class="cta-panel"><div><h2>ابدأ ضغط صورك</h2><p>اختر الصور وقارن النتائج قبل تنزيلها.</p></div><a class="button" href="#compressor">الانتقال إلى أداة الضغط ↑</a></section>
+</main>
+<footer class="site-footer"><div class="footer-wrap"><p>أداة مجانية لضغط الصور مباشرة في المتصفح.</p><nav aria-label="روابط مساعدة"><a href="../privacy.html">الخصوصية (English)</a><a href="../terms.html">الشروط (English)</a><a href="../contact.html">التواصل (English)</a></nav><small>© 2026 Image Compressor</small></div></footer>
+</body></html>
