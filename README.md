@@ -1,6 +1,6 @@
 # Image Compressor
 
-A static, English-language image compression website designed for deployment on Deplexo using a small Python HTTP server in Docker. The browser tool supports manual quality/width settings and optional target-size compression.
+A static, multilingual image compression website designed for deployment on Deplexo using a small Python HTTP server in Docker. The browser tool supports manual quality/width settings and optional target-size compression.
 
 ## Deplexo settings
 - App type: Web service
@@ -23,12 +23,12 @@ Canonical URLs and the sitemap currently use https://compressimagefiles.co99.win
 - robots.txt and sitemap.xml: crawl guidance
 - favicon.svg: scalable site icon used across pages
 - favicon-96.png: 96×96 PNG favicon declared on the English homepage for search/browser icon support
-- ar/: initial Arabic localization, including the homepage and 50KB/100KB target-size guides
+- ar/: Arabic homepage and target-size guides for 50KB, 100KB, 200KB, and 500KB
 
 Image files are processed locally in the user's browser. The tool accepts JPG, PNG and WebP and exports JPG or WebP. Keep original files and review exported results.
 
 ## Language versions
 - English pages remain at the root.
 - Arabic pages are under `/ar/` and use Arabic right-to-left layout.
-- Arabic and English equivalents use `hreflang`; all three Arabic URLs are included in `sitemap.xml`.
-- Shared compression behavior stays in `app.js`; Arabic pages load `../app.js` and `../styles.css`.
+- Matching English and Arabic homepage/target-size pages use reciprocal `hreflang` references; all five Arabic URLs are included in `sitemap.xml`.
+- The Arabic homepage uses the shared `../app.js` compressor and `../styles.css`; the size guides link to the homepage with the chosen target preselected.
