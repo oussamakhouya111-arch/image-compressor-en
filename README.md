@@ -22,6 +22,13 @@ Canonical URLs and the sitemap currently use https://compressimagefiles.co99.win
 - about.html, contact.html, privacy.html, terms.html: site information pages
 - robots.txt and sitemap.xml: crawl guidance
 - favicon.svg: scalable site icon used across pages
-- favicon-96.png: 96×96 PNG favicon declared on the homepage for search/browser icon support
+- favicon-96.png: 96×96 PNG favicon declared on the English homepage for search/browser icon support
+- ar/: initial Arabic localization, including the homepage and 50KB/100KB target-size guides
 
 Image files are processed locally in the user's browser. The tool accepts JPG, PNG and WebP and exports JPG or WebP. Keep original files and review exported results.
+
+## Language versions
+- English pages remain at the root.
+- Arabic pages are under `/ar/` and use Arabic right-to-left layout.
+- Arabic and English equivalents use `hreflang`; all three Arabic URLs are included in `sitemap.xml`.
+- Shared compression behavior stays in `app.js`; Arabic pages load `../app.js` and `../styles.css`.
