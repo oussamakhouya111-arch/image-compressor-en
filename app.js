@@ -9,7 +9,7 @@
   const items = [];
   let debounceTimer = null;
   let runId = 0;
-  const formatBytes = (bytes) => bytes < 1024 * 1024 ? Math.max(1, Math.round(bytes / 1024)) + " KB" : (bytes / (1024 * 1024)).toFixed(2) + " MB";
+  const formatBytes = (bytes) => { const value = bytes < 1024 * 1024 ? Math.max(1, Math.round(bytes / 1024)) : Number((bytes / (1024 * 1024)).toFixed(2)); const unit = bytes < 1024 * 1024 ? (isFrench ? " Ko" : " KB") : (isFrench ? " Mo" : " MB"); return value + unit; };
   const safeBaseName = (name) => name.replace(/\.[^.]+$/, "").replace(/[\\/:*?"<>|]/g, "_");
 
   async function compress(item) {
