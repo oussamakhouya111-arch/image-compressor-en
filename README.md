@@ -19,6 +19,7 @@ Canonical URLs and the sitemap currently use https://compressimagefiles.co99.win
 - ar/compress-image-to-50kb.html, ar/compress-image-to-100kb.html, ar/compress-image-to-200kb.html, and ar/compress-image-to-500kb.html: Arabic target-size landing pages
 - app.js: browser-side image processing, including automatic target-size compression
 - compress-image-to-50kb.html, compress-image-to-100kb.html, compress-image-to-200kb.html, and compress-image-to-500kb.html: target-size landing pages
+- ar/index.html and ar/compress-image-to-50kb.html, ar/compress-image-to-100kb.html, ar/compress-image-to-200kb.html, and ar/compress-image-to-500kb.html: Arabic RTL versions of the tool and target-size landing pages
 - styles.css: responsive styling
 - how-to-compress-images.html and jpg-vs-webp.html: useful informational pages
 - about.html, contact.html, privacy.html, terms.html: site information pages
