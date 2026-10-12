@@ -121,7 +121,8 @@
     if (item.url) URL.revokeObjectURL(item.url);
     item.blob = blob;
     item.url = URL.createObjectURL(blob);
-    item.extension = type === "image/webp" ? "webp" : "jpg";
+    const actualType = blob.type || type;
+    item.extension = actualType === "image/webp" ? "webp" : actualType === "image/png" ? "png" : "jpg";
     item.error = "";
     item.usedQuality = usedQuality;
     item.actualWidth = width;
