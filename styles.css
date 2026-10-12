@@ -140,3 +140,9 @@ h1{max-width:800px;font-size:clamp(2.45rem,5.7vw,4.1rem);line-height:1.04;letter
   .size-guide-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
 }
 @media(max-width:420px){.size-guide-links{grid-template-columns:1fr}}
+
+
+/* Arabic-language layout adjustments */
+html[dir="rtl"] .hero{text-align:right}
+html[dir="rtl"] .page-content ol,html[dir="rtl"] .page-content ul{padding-right:1.5rem;padding-left:0}
+html[dir="rtl"] .content-section p,html[dir="rtl"] .page-content p{text-align:right}
