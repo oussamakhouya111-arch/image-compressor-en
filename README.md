@@ -1,40 +1,45 @@
 # Image Compressor
 
-A static, multilingual image compression website designed for deployment on Deplexo using a small Python HTTP server in Docker. The browser tool supports manual quality/width settings and optional target-size compression.
+A static, multilingual image-compression website. JPG, PNG, and WebP files are processed in the visitor's browser; the tool exports JPG or WebP and can try to meet a target file size.
 
-## Deplexo settings
+## Deployment on Deplexo
+
 - App type: Web service
 - Build method: Dockerfile
 - Root directory: leave blank
-- Dockerfile path: leave blank (uses the Dockerfile at repository root)
-- Start command: leave blank (the Dockerfile starts the HTTP server)
-- Port: 3000; the server reads the PORT environment variable.
+- Dockerfile: use the repository-root `Dockerfile`
+- Start command: use the Dockerfile's default command
+- Port: `3000` (the server reads the `PORT` environment variable)
 
-## SEO
-Canonical URLs and the sitemap currently use https://compressimagefiles.co99.win. If you change the public hostname, update canonical URLs in all HTML pages, plus robots.txt and sitemap.xml.
+The Dockerfile starts Python's built-in static HTTP server. No Python packages need to be installed.
 
-## Files
-- index.html: English home page and compressor
-- ar/index.html and ar/: Arabic right-to-left version of the compressor
-- ar/compress-image-to-50kb.html, ar/compress-image-to-100kb.html, ar/compress-image-to-200kb.html, and ar/compress-image-to-500kb.html: Arabic target-size landing pages
-- app.js: browser-side image processing, including automatic target-size compression
-- compress-image-to-50kb.html, compress-image-to-100kb.html, compress-image-to-200kb.html, and compress-image-to-500kb.html: target-size landing pages
-- ar/index.html and ar/compress-image-to-50kb.html, ar/compress-image-to-100kb.html, ar/compress-image-to-200kb.html, and ar/compress-image-to-500kb.html: Arabic RTL versions of the tool and target-size landing pages
-- styles.css: responsive styling
-- how-to-compress-images.html and jpg-vs-webp.html: useful informational pages
-- about.html, contact.html, privacy.html, terms.html: site information pages
-- robots.txt and sitemap.xml: crawl guidance
-- favicon.svg: scalable site icon used across pages
-- favicon-96.png: 96×96 PNG favicon declared on the English homepage for search/browser icon support
-- ar/: Arabic homepage and target-size guides for 50KB, 100KB, 200KB, and 500KB
+## Languages and pages
 
-Image files are processed locally in the user's browser. The tool accepts JPG, PNG and WebP and exports JPG or WebP. Keep original files and review exported results.
-
-## Language versions
-- English pages remain at the repository root.
+- English pages are at the repository root.
 - Arabic pages are under `/ar/` and use a right-to-left layout.
 - French pages are under `/fr/`.
-- The homepage, target-size pages, guides, About, Contact, Privacy, and Terms have matching English, Arabic, and French versions.
-- Language selectors link to the equivalent page in the selected language; matching pages use `hreflang` alternates.
-- `sitemap.xml` lists the 33 current indexable HTML URLs across the three language versions.
-- Arabic and French pages reuse the shared `../app.js` compressor and `../styles.css`. Target-size pages open the tool with the requested target preselected.
+
+Each language has a homepage, four target-size pages (50, 100, 200, and 500 KB), a compression guide, a JPG-versus-WebP guide, About, Contact, Privacy, and Terms pages.
+
+Language selectors link to the equivalent page in the other languages. Matching pages use `hreflang` alternates and language-specific canonical URLs.
+
+## Main files
+
+- `index.html`: English compressor and homepage
+- `ar/index.html`, `fr/index.html`: localized compressor homepages
+- `app.js`: browser-side image processing and localized status/error messages
+- `styles.css`: responsive site styling, including RTL layout adjustments
+- `compress-image-to-{50,100,200,500}kb.html`: English target-size pages
+- `ar/` and `fr/`: Arabic and French target-size and information pages
+- `about.html`, `contact.html`, `privacy.html`, `terms.html`: English site-information pages
+- `robots.txt` and `sitemap.xml`: crawler guidance and the current list of 33 HTML URLs
+- `favicon.svg` and `favicon-96.png`: site icons
+- `Dockerfile`: static web-server deployment setup
+
+## SEO hostname
+
+The HTML metadata, structured data, `robots.txt`, and `sitemap.xml` currently use `https://compressimagefiles.co99.win` as the official hostname. If the public hostname changes, update canonical URLs, `hreflang` URLs, Open Graph URLs, structured-data URLs, `robots.txt`, and `sitemap.xml` together.
+
+## Notes
+
+Keep original image files and review compressed results. Compression quality and size depend on the source image and selected settings; a target size is not guaranteed for every input.
