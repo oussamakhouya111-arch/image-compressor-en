@@ -36,6 +36,9 @@
       ctx.drawImage(item.bitmap, 0, 0, w, h);
       const blob = await new Promise((resolve) => canvas.toBlob(resolve, type, quality));
       if (!blob) throw new Error(t("This browser could not export the image in the selected format.", "تعذّر حفظ الصورة بالصيغة المختارة في هذا المتصفح.", "Ce navigateur ne peut pas exporter l’image dans le format choisi."));
+      if (blob.type && blob.type !== type) {
+        throw new Error(t("This browser could not export the image in the selected format.", "تعذّر حفظ الصورة بالصيغة المختارة في هذا المتصفح.", "Ce navigateur ne peut pas exporter l’image dans le format choisi."));
+      }
       return blob;
     };
 
