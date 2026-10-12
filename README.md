@@ -14,7 +14,9 @@ A static, multilingual image compression website designed for deployment on Depl
 Canonical URLs and the sitemap currently use https://compressimagefiles.co99.win. If you change the public hostname, update canonical URLs in all HTML pages, plus robots.txt and sitemap.xml.
 
 ## Files
-- index.html: home page and compressor
+- index.html: English home page and compressor
+- ar/index.html and ar/: Arabic right-to-left version of the compressor
+- ar/compress-image-to-50kb.html, ar/compress-image-to-100kb.html, ar/compress-image-to-200kb.html, and ar/compress-image-to-500kb.html: Arabic target-size landing pages
 - app.js: browser-side image processing, including automatic target-size compression
 - compress-image-to-50kb.html, compress-image-to-100kb.html, compress-image-to-200kb.html, and compress-image-to-500kb.html: target-size landing pages
 - styles.css: responsive styling
