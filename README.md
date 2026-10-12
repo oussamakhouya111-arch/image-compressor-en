@@ -31,7 +31,10 @@ Canonical URLs and the sitemap currently use https://compressimagefiles.co99.win
 Image files are processed locally in the user's browser. The tool accepts JPG, PNG and WebP and exports JPG or WebP. Keep original files and review exported results.
 
 ## Language versions
-- English pages remain at the root.
-- Arabic pages are under `/ar/` and use Arabic right-to-left layout.
-- Matching English and Arabic homepage/target-size pages use reciprocal `hreflang` references; all five Arabic URLs are included in `sitemap.xml`.
-- The Arabic homepage uses the shared `../app.js` compressor and `../styles.css`; the size guides link to the homepage with the chosen target preselected.
+- English pages remain at the repository root.
+- Arabic pages are under `/ar/` and use a right-to-left layout.
+- French pages are under `/fr/`.
+- The homepage, target-size pages, guides, About, Contact, Privacy, and Terms have matching English, Arabic, and French versions.
+- Language selectors link to the equivalent page in the selected language; matching pages use `hreflang` alternates.
+- `sitemap.xml` lists the 33 current indexable HTML URLs across the three language versions.
+- Arabic and French pages reuse the shared `../app.js` compressor and `../styles.css`. Target-size pages open the tool with the requested target preselected.
